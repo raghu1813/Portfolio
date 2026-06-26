@@ -50,5 +50,6 @@ jobs:
           registryPassword: ${{ secrets.GITHUB_TOKEN }}
           targetPort: 8080
           ingress: external
+          environmentVariables: "ASPNETCORE_HTTP_PORTS=8080 ASPNETCORE_URLS=http://+:8080"
 
 
