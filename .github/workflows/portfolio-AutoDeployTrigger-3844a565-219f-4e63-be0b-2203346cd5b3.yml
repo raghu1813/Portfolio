@@ -27,7 +27,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./Portfolio.Api
+          context: .
           file: ./Portfolio.Api/Dockerfile
           push: true
           tags: ghcr.io/raghu1813/portfolio-api:latest,ghcr.io/raghu1813/portfolio-api:${{ github.sha }}
