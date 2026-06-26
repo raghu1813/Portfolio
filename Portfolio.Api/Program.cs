@@ -29,6 +29,14 @@ builder.Services.AddSingleton<EmailClient?>(sp =>
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+
+// Health check endpoints must be available in all environments for Container Apps probes
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/alive", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
+
 app.UseHttpsRedirection();
 app.UseCors("PortfolioPolicy");
 
