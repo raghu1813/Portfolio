@@ -48,5 +48,7 @@ jobs:
           registryUrl: ghcr.io
           registryUsername: ${{ github.actor }}
           registryPassword: ${{ secrets.GITHUB_TOKEN }}
+          targetPort: 8080
+          ingress: external
 
 
