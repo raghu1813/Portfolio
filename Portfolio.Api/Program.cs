@@ -21,7 +21,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddSingleton<EmailClient?>(sp =>
 {
-    var connectionString = builder.Configuration["AzureCommunicationServices:ConnectionString"];
+    var connectionString = builder.Configuration["ACS_CONNECTION_STRING"]
+                        ?? builder.Configuration["AzureCommunicationServices:ConnectionString"];
     return string.IsNullOrWhiteSpace(connectionString) ? null : new EmailClient(connectionString);
 });
 
@@ -120,8 +121,9 @@ app.MapPost("/api/contact", async (ContactRequest request, EmailClient? emailCli
         return Results.Ok(new ContactResponse(false, "Email service not configured. Please email raghurm.kaligotla@gmail.com directly."));
     }
 
-    var senderAddress = config["AzureCommunicationServices:SenderAddress"]
-        ?? throw new InvalidOperationException("ACS sender address is not configured.");
+    var senderAddress = config["ACS_SENDER_ADDRESS"]
+                     ?? config["AzureCommunicationServices:SenderAddress"]
+                     ?? throw new InvalidOperationException("ACS sender address is not configured.");
     const string ownerEmail = "raghurm.kaligotla@gmail.com";
 
     var subject = string.IsNullOrWhiteSpace(request.Subject)
