@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://portfolio-api.YOURAPP.azurecontainerapps.io'
+  apiBaseUrl: 'https://portfolio.orangemushroom-4f6024b8.southindia.azurecontainerapps.io'
 };

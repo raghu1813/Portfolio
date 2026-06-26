@@ -10,6 +10,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("PortfolioPolicy", policy =>
         policy.WithOrigins(
                 builder.Configuration["AllowedOrigins"] ?? "http://localhost:4200",
+                "http://localhost:4200",
+                "https://red-stone-043bae800.4.azurestaticapps.net",
                 "https://portfolio.raghuram.dev",
                 "https://*.azurestaticapps.net"
               )
