@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
         with:
-          app-name: portfolio-api
+          app-name: portfolio-api-dcechqf9ghhnf0f2
           package: ./publish
           startup-command: ./Portfolio.Api
 
