@@ -51,7 +51,7 @@ app.MapGet("/api/portfolio", () =>
             new Experience(
                 Company: "Deloitte",
                 Role: "Full Stack Developer",
-                Period: "Oct 2020 – Dec 2023",
+                Period: "Dec 2023 – Present",
                 Highlights:
                 [
                     "Engineered the Integrated International Tax Reform (IITR) web application using .NET and Angular, modernizing and replacing highly manual, Excel-based tax workflows.",
@@ -64,7 +64,7 @@ app.MapGet("/api/portfolio", () =>
             new Experience(
                 Company: "ADP",
                 Role: "Full Stack Developer",
-                Period: "2016 – 2020",
+                Period: "Oct 2020 – Dec 2023",
                 Highlights:
                 [
                     "Spearheaded the end-to-end development of an in-house Expense Management system, architecting the .NET backend and Angular frontend from scratch.",
@@ -79,7 +79,7 @@ app.MapGet("/api/portfolio", () =>
             new Education(
                 Institution: "National Institute of Technology (NIT) Andhra Pradesh",
                 Degree: "B.Tech in Computer Science and Engineering (CSE)",
-                Years: "2012 – 2016"
+                Years: "2016 – 2020"
             ),
         ],
         Certifications:
