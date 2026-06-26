@@ -18,13 +18,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
-builder.Services.AddSingleton<EmailClient?>(sp =>
-{
-    var connectionString = builder.Configuration["ACS_CONNECTION_STRING"]
-                        ?? builder.Configuration["AzureCommunicationServices:ConnectionString"];
-    return string.IsNullOrWhiteSpace(connectionString) ? null : new EmailClient(connectionString);
-});
-
 var app = builder.Build();
 
 app.MapHealthChecks("/health");
@@ -105,8 +98,11 @@ app.MapGet("/api/portfolio", () =>
 .WithName("GetPortfolio");
 
 // ─── Contact Form ─────────────────────────────────────────────────
-app.MapPost("/api/contact", async (ContactRequest request, EmailClient? emailClient, IConfiguration config, ILogger<Program> logger) =>
+app.MapPost("/api/contact", async (ContactRequest request, IConfiguration config, ILogger<Program> logger) =>
 {
+    var connectionString = config["ACS_CONNECTION_STRING"] ?? config["AzureCommunicationServices:ConnectionString"];
+    EmailClient? emailClient = string.IsNullOrWhiteSpace(connectionString) ? null : new EmailClient(connectionString);
+
     if (string.IsNullOrWhiteSpace(request.Name) ||
         string.IsNullOrWhiteSpace(request.Email) ||
         string.IsNullOrWhiteSpace(request.Message))
