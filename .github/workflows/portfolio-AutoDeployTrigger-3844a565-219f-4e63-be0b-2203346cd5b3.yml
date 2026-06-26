@@ -36,5 +36,6 @@ jobs:
         with:
           app-name: portfolio-api
           package: ./publish
+          startup-command: dotnet Portfolio.Api.dll
 
 
