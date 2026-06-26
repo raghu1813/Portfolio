@@ -49,7 +49,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'portfolio-api-dcechqf9ghhnf0f2'
+          app-name: 'portfolio-api'
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D928B77BCA324D97AC646FF3E097C9F0 }}
