@@ -8,11 +8,10 @@ builder.Services.AddHealthChecks();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PortfolioPolicy", policy =>
-        policy.WithOrigins(
-                "http://localhost:4200",
-                "https://red-stone-043bae800.4.azurestaticapps.net",
-                "https://portfolio.raghuram.dev",
-                "https://*.azurestaticapps.net"
+        policy.SetIsOriginAllowed(origin =>
+                origin == "http://localhost:4200" ||
+                new Uri(origin).Host.EndsWith(".azurestaticapps.net") ||
+                new Uri(origin).Host == "portfolio.raghuram.dev"
               )
               .AllowAnyHeader()
               .AllowAnyMethod());
