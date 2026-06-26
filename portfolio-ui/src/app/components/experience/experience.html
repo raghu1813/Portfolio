@@ -1,0 +1,47 @@
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Work History</span>
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-subtitle">Nearly 6 years delivering enterprise-grade software at world-class organisations.</p>
+    </div>
+
+    <!-- Company tabs -->
+    <div class="exp-tabs">
+      @for (exp of experiences(); track exp.company; let i = $index) {
+        <button
+          class="exp-tab"
+          [class.active]="activeIdx() === i"
+          (click)="activeIdx.set(i)">
+          {{ exp.company }}
+        </button>
+      }
+    </div>
+
+    <!-- Active experience detail -->
+    @for (exp of experiences(); track exp.company; let i = $index) {
+      @if (activeIdx() === i) {
+        <div class="exp-panel glass-card animate-fade-up">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-role">{{ exp.role }}</h3>
+              <span class="exp-company gradient-text">@ {{ exp.company }}</span>
+            </div>
+            <span class="exp-period">
+              <i class="fas fa-calendar-alt"></i>
+              {{ exp.period }}
+            </span>
+          </div>
+          <ul class="exp-highlights">
+            @for (h of exp.highlights; track h) {
+              <li class="exp-highlight">
+                <span class="highlight-arrow">▹</span>
+                {{ h }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    }
+  </div>
+</section>

@@ -1,0 +1,107 @@
+.experience-section { background: var(--navy-900); }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-header { text-align: center; margin-bottom: 3rem; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-400);
+  margin-bottom: 0.75rem;
+}
+
+.exp-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.12);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.exp-tab {
+  padding: 0.7rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+
+  &:hover { color: var(--cyan-400); }
+
+  &.active {
+    color: var(--cyan-400);
+    border-bottom-color: var(--cyan-400);
+  }
+}
+
+.exp-panel {
+  padding: 2.25rem;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.exp-role {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 0.25rem;
+}
+
+.exp-company {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.exp-period {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+
+  i { color: var(--cyan-400); }
+}
+
+.exp-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.exp-highlight {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.highlight-arrow {
+  color: var(--cyan-400);
+  flex-shrink: 0;
+  margin-top: 2px;
+}

@@ -1,0 +1,26 @@
+<section id="education" class="education-section dot-grid">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Academic Background</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+
+    <div class="edu-list">
+      @for (edu of educations(); track edu.institution) {
+        <div class="edu-card glass-card animate-fade-up">
+          <div class="edu-icon-wrap">
+            <i class="fas fa-graduation-cap edu-icon"></i>
+          </div>
+          <div class="edu-body">
+            <h3 class="edu-degree">{{ edu.degree }}</h3>
+            <p class="edu-institution">{{ edu.institution }}</p>
+            <span class="edu-years">
+              <i class="fas fa-calendar-alt"></i>
+              {{ edu.years }}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,178 @@
+/* stylelint-disable */
+/* Tailwind CSS v4 — PostCSS processes this, Sass just passes it through */
+/* sass-lint:disable no-invalid-hex */
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* ── Custom CSS Variables ────────────────────────────────────────── */
+:root {
+  --navy-950:  #020817;
+  --navy-900:  #0a0f1e;
+  --navy-800:  #0f172a;
+  --navy-700:  #1e2a45;
+  --navy-600:  #263352;
+  --cyan-400:  #22d3ee;
+  --cyan-300:  #67e8f9;
+  --cyan-200:  #a5f3fc;
+  --purple-500:#8b5cf6;
+  --text-muted:#94a3b8;
+}
+
+/* ── Base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--navy-950);
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy-900); }
+::-webkit-scrollbar-thumb {
+  background: var(--cyan-400);
+  border-radius: 3px;
+}
+
+/* ── Selection ───────────────────────────────────────────────────── */
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: var(--cyan-300);
+}
+
+/* ── Utility classes ─────────────────────────────────────────────── */
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--cyan-400), var(--purple-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 211, 238, 0.12);
+  border-radius: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.08);
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--cyan-400), var(--purple-500));
+  color: var(--navy-950);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--cyan-400);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1.5px solid var(--cyan-400);
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: rgba(34, 211, 238, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ── Animations ──────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-16px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.3); }
+  50%       { box-shadow: 0 0 28px rgba(34, 211, 238, 0.7); }
+}
+
+.animate-fade-up   { animation: fadeInUp   0.7s ease both; }
+.animate-fade-left { animation: fadeInLeft 0.7s ease both; }
+.animate-fade-right{ animation: fadeInRight 0.7s ease both; }
+.animate-float     { animation: float 4s ease-in-out infinite; }
+
+/* ── Gradient text ───────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--cyan-400) 0%, var(--purple-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section spacing ─────────────────────────────────────────────── */
+section {
+  padding: 5rem 0;
+}
+
+/* ── Dot grid background ─────────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(34,211,238,0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+

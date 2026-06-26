@@ -1,0 +1,39 @@
+<nav class="navbar" [class.scrolled]="scrolled()">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a class="logo" (click)="navigate('#hero')">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-name">RK</span>
+      <span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      @for (link of links; track link.anchor) {
+        <li>
+          <a (click)="navigate(link.anchor)" class="nav-link">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+
+    <!-- CTA -->
+    <a href="mailto:raghurm.kaligotla@gmail.com" class="btn-primary nav-cta">Hire Me</a>
+
+    <!-- Hamburger -->
+    <button class="hamburger" (click)="menuOpen.set(!menuOpen())" aria-label="Toggle menu">
+      <span [class.open]="menuOpen()"></span>
+      <span [class.open]="menuOpen()"></span>
+      <span [class.open]="menuOpen()"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  @if (menuOpen()) {
+    <div class="mobile-menu">
+      @for (link of links; track link.anchor) {
+        <a (click)="navigate(link.anchor)" class="mobile-link">{{ link.label }}</a>
+      }
+      <a href="mailto:raghurm.kaligotla@gmail.com" class="btn-primary" style="margin-top:1rem;">Hire Me</a>
+    </div>
+  }
+</nav>

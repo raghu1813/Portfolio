@@ -1,0 +1,89 @@
+<section id="hero" class="hero dot-grid">
+  <div class="hero-bg-glow glow-left"></div>
+  <div class="hero-bg-glow glow-right"></div>
+
+  <div class="hero-content" *ngIf="person() as p">
+    <div class="badge animate-fade-up" style="animation-delay:.1s">
+      <span class="badge-dot"></span>
+      Available for opportunities
+    </div>
+
+    <h1 class="hero-name animate-fade-up" style="animation-delay:.2s">
+      Hi, I'm <span class="gradient-text">{{ p.name }}</span>
+    </h1>
+
+    <h2 class="hero-title animate-fade-up" style="animation-delay:.3s">
+      <span class="typed">{{ typedText() }}</span>
+      <span class="cursor">|</span>
+    </h2>
+
+    <p class="hero-summary animate-fade-up" style="animation-delay:.4s">
+      {{ p.summary }}
+    </p>
+
+    <div class="hero-meta animate-fade-up" style="animation-delay:.45s">
+      <span class="meta-item">
+        <i class="fas fa-map-marker-alt"></i>
+        {{ p.location }}
+      </span>
+      <span class="meta-divider">·</span>
+      <span class="meta-item">
+        <i class="fas fa-briefcase"></i>
+        6 Years Experience
+      </span>
+    </div>
+
+    <div class="hero-actions animate-fade-up" style="animation-delay:.5s">
+      <button class="btn-primary" (click)="scrollTo('#contact')">
+        <i class="fas fa-paper-plane"></i> Get In Touch
+      </button>
+      <button class="btn-outline" (click)="scrollTo('#experience')">
+        <i class="fas fa-code"></i> View My Work
+      </button>
+    </div>
+
+    <div class="hero-socials animate-fade-up" style="animation-delay:.6s">
+      <a [href]="p.linkedInUrl" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a [href]="p.gitHubUrl" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a [href]="'mailto:' + p.email" class="social-icon" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating visual -->
+  <div class="hero-visual animate-float">
+    <div class="code-card glass-card">
+      <div class="code-header">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="code-file">portfolio.cs</span>
+      </div>
+      <pre class="code-body"><span class="kw">var</span> dev = <span class="kw">new</span> <span class="cls">Developer</span>
+&#123;
+  Name     = <span class="str">"Raghuram"</span>,
+  Stack    = <span class="str">".NET + Angular"</span>,
+  Cloud    = <span class="str">"Azure"</span>,
+  Years    = <span class="num">6</span>,
+  AI       = <span class="kw">true</span>
+&#125;;</pre>
+    </div>
+
+    <div class="stat-badge stat-1 glass-card">
+      <span class="stat-num">6 Yrs</span>
+      <span class="stat-label">Enterprise Experience</span>
+    </div>
+    <div class="stat-badge stat-2 glass-card">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Azure Certifications</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" (click)="scrollTo('#about')">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="about-grid" *ngIf="person() as p">
+      <!-- Left: text -->
+      <div class="about-text animate-fade-left">
+        <span class="eyebrow">About Me</span>
+        <h2 class="section-title">Turning Complex Problems into<br><span class="gradient-text">Elegant Solutions</span></h2>
+        <p class="about-body">{{ p.summary }}</p>
+        <p class="about-body">
+          I thrive at the intersection of <strong class="accent">enterprise backend engineering</strong>,
+          <strong class="accent">modern Angular frontends</strong>, and
+          <strong class="accent">Azure cloud architecture</strong>. At Deloitte and ADP I've built
+          tax reform platforms, AI-powered natural language interfaces, and enterprise-scale
+          payroll and expense management systems.
+        </p>
+        <div class="about-actions">
+          <a href="mailto:raghurm.kaligotla@gmail.com" class="btn-primary">
+            <i class="fas fa-envelope"></i> Contact Me
+          </a>
+          <a [href]="p.linkedInUrl" target="_blank" rel="noopener" class="btn-outline">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: highlight cards -->
+      <div class="about-highlights animate-fade-right">
+        @for (h of highlights; track h.label) {
+          <div class="highlight-card glass-card">
+            <i [class]="h.icon + ' highlight-icon'"></i>
+            <div>
+              <div class="highlight-label">{{ h.label }}</div>
+              <div class="highlight-sub">{{ h.sub }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

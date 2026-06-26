@@ -1,0 +1,24 @@
+<section id="certifications" class="cert-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Credentials</span>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-subtitle">Industry-recognised credentials validating cloud and AI expertise.</p>
+    </div>
+
+    <div class="cert-grid">
+      @for (cert of certs(); track cert.code) {
+        <div class="cert-card glass-card animate-fade-up">
+          <div class="cert-badge" [class]="codeColor(cert.code)">
+            <i class="fas fa-certificate cert-icon"></i>
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-name">{{ cert.name }}</h3>
+            <span class="cert-code">{{ cert.code }}</span>
+          </div>
+          <i class="fas fa-check-circle cert-verified"></i>
+        </div>
+      }
+    </div>
+  </div>
+</section>

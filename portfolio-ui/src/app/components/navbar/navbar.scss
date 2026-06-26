@@ -1,0 +1,107 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+
+  &.scrolled {
+    background: rgba(2, 8, 23, 0.85);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 rgba(34, 211, 238, 0.15);
+  }
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: -0.02em;
+  .logo-bracket { color: var(--cyan-400); }
+  .logo-name    { color: #e2e8f0; margin: 0 1px; }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    color: var(--cyan-400);
+    background: rgba(34, 211, 238, 0.07);
+  }
+}
+
+.nav-cta {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 0.55rem 1.35rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cyan-400);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    &.open:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    &.open:nth-child(2) { opacity: 0; }
+    &.open:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem 1.5rem;
+  background: rgba(2, 8, 23, 0.97);
+  border-top: 1px solid rgba(34, 211, 238, 0.12);
+  animation: fadeInUp 0.25s ease both;
+}
+
+.mobile-link {
+  padding: 0.75rem 1rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+  &:hover { color: var(--cyan-400); }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; margin-left: auto; }
+}
