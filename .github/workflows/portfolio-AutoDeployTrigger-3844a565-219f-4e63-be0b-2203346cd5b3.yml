@@ -1,4 +1,4 @@
-name: Trigger auto deployment for portfolio
+name: Deploy Portfolio API to Azure App Service
 
 on:
   push:
@@ -11,26 +11,18 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      packages: write   # needed to push to ghcr.io
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          dotnet-version: '10.x'
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Portfolio.Api/Dockerfile
-          push: true
-          tags: ghcr.io/raghu1813/portfolio-api:latest,ghcr.io/raghu1813/portfolio-api:${{ github.sha }}
+      - name: Build and publish
+        run: dotnet publish Portfolio.Api/Portfolio.Api.csproj -c Release -o ./publish
 
       - name: Azure Login
         uses: azure/login@v2
@@ -39,17 +31,10 @@ jobs:
           tenant-id: ${{ secrets.PORTFOLIO_AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.PORTFOLIO_AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy to Azure Container Apps
-        uses: azure/container-apps-deploy-action@v2
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
         with:
-          containerAppName: portfolio
-          resourceGroup: personal
-          imageToDeploy: ghcr.io/raghu1813/portfolio-api:${{ github.sha }}
-          registryUrl: ghcr.io
-          registryUsername: ${{ github.actor }}
-          registryPassword: ${{ secrets.GITHUB_TOKEN }}
-          targetPort: 8080
-          ingress: external
-          environmentVariables: "ASPNETCORE_HTTP_PORTS=8080 ASPNETCORE_URLS=http://+:8080"
+          app-name: portfolio-api
+          package: ./publish
 
 
