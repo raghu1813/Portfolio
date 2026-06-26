@@ -37,7 +37,6 @@ app.MapHealthChecks("/alive", new Microsoft.AspNetCore.Diagnostics.HealthChecks.
     Predicate = r => r.Tags.Contains("live")
 });
 
-app.UseHttpsRedirection();
 app.UseCors("PortfolioPolicy");
 
 // ─── Portfolio Data ───────────────────────────────────────────────
