@@ -3,6 +3,11 @@ using Portfolio.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080);
+});
+
 builder.AddServiceDefaults();
 
 builder.Services.AddCors(options =>
