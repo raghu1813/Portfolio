@@ -22,7 +22,7 @@ jobs:
           dotnet-version: '10.x'
 
       - name: Build and publish
-        run: dotnet publish Portfolio.Api/Portfolio.Api.csproj -c Release -o ./publish
+        run: dotnet publish Portfolio.Api/Portfolio.Api.csproj -c Release -o ./publish --runtime linux-x64 --self-contained true
 
       - name: Azure Login
         uses: azure/login@v2
@@ -36,6 +36,6 @@ jobs:
         with:
           app-name: portfolio-api
           package: ./publish
-          startup-command: dotnet Portfolio.Api.dll
+          startup-command: ./Portfolio.Api
 
 
