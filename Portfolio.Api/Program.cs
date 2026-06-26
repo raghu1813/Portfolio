@@ -19,11 +19,10 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
-builder.Services.AddSingleton(sp =>
+builder.Services.AddSingleton<EmailClient?>(sp =>
 {
-    var connectionString = builder.Configuration["AzureCommunicationServices:ConnectionString"]
-        ?? throw new InvalidOperationException("ACS connection string is not configured.");
-    return new EmailClient(connectionString);
+    var connectionString = builder.Configuration["AzureCommunicationServices:ConnectionString"];
+    return string.IsNullOrWhiteSpace(connectionString) ? null : new EmailClient(connectionString);
 });
 
 var app = builder.Build();
@@ -106,13 +105,19 @@ app.MapGet("/api/portfolio", () =>
 .WithName("GetPortfolio");
 
 // ─── Contact Form ─────────────────────────────────────────────────
-app.MapPost("/api/contact", async (ContactRequest request, EmailClient emailClient, IConfiguration config, ILogger<Program> logger) =>
+app.MapPost("/api/contact", async (ContactRequest request, EmailClient? emailClient, IConfiguration config, ILogger<Program> logger) =>
 {
     if (string.IsNullOrWhiteSpace(request.Name) ||
         string.IsNullOrWhiteSpace(request.Email) ||
         string.IsNullOrWhiteSpace(request.Message))
     {
         return Results.BadRequest(new ContactResponse(false, "Name, email, and message are required."));
+    }
+
+    if (emailClient is null)
+    {
+        logger.LogWarning("ACS not configured — contact form submission from {Email} dropped.", request.Email);
+        return Results.Ok(new ContactResponse(false, "Email service not configured. Please email raghurm.kaligotla@gmail.com directly."));
     }
 
     var senderAddress = config["AzureCommunicationServices:SenderAddress"]
